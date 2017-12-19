@@ -379,13 +379,9 @@ header .hide-completed {
 .all_conversation ul li:hover .sub_menu_ {
   display: block;
 }
-.new_message_head button {
-  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: medium none;
-}
+
 .new_message_head {
-  background: #f5f3f3 none repeat scroll 0 0;
-  float: left;
+  background: #f5f3f3 ;
   font-size: 13px;
   font-weight: 600;
   padding: 18px 10px;
@@ -395,7 +391,7 @@ header .hide-completed {
   border: 1px solid #dddddd;
 }
 .chat_area {
-  float: left;
+  
   height: 300px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -449,4 +445,9 @@ header .hide-completed {
   background: #428bca none repeat scroll 0 0;
   color: #fff;
   cursor:pointer;
+}
+
+.new-task{
+  background: #f5f3f3;
+  
 }
