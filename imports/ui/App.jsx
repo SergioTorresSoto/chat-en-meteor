@@ -7,14 +7,15 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Usuarios from './Usuarios';
 import Conversaciones from './Conversaciones';
 import { Mensajes } from '../api/mensajes.js';
+import { Users } from '../api/users.js';
 import AccountsUIWrapper from './AccountsUIWrapper';
-
+import { Session } from 'meteor/session'
 
 // App component - represents the whole app
 
 class App extends Component {
   handleSubmit(event) {
-
+    //console.log(Session.get('isUser'));
     event.preventDefault();
     // Find the text field via the React ref
 
@@ -23,6 +24,7 @@ class App extends Component {
     Mensajes.insert({
       texto,
       idEmisor: Meteor.userId(),
+      idReceptor: Session.get('isUser'),
       createdAt: new Date(), // current time
 
     });
@@ -31,9 +33,19 @@ class App extends Component {
     ReactDOM.findDOMNode(this.refs.textInput).value = '';
   }
 
+renderUsuarios() {
+  if(Meteor.user()){
+
+    return this.props.usuarios.map((u) => (
+
+        <Usuarios key={u._id} usuario={u}/>
+
+    ));
+  }
+}
 
   render() {
-
+    console.log(Meteor.user());
       return (
         <div className="main_section">
             <div className="container">
@@ -45,12 +57,11 @@ class App extends Component {
                             <div className="dropdown all_conversation">
            
 
-                                <button className="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="fa fa-weixin" aria-hidden="true"></i>Conversations</button> 
+                                <button className="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="fa fa-weixin" aria-hidden="true"></i>Conversations</button> 
                             </div>
                             <div className="member_list">
                                 <ul className="list-unstyled">
-                                    <Usuarios />
-                                    <Usuarios />
+                                  {this.renderUsuarios()}
                                 </ul>
                             </div>
                         </div>
@@ -70,17 +81,7 @@ class App extends Component {
                             <Conversaciones/>
 
                             <form className="new-task" onSubmit={this.handleSubmit.bind(this)}  >
-
-                                <input
-
-                                type="text"
-
-                                ref="textInput"
-
-                                placeholder="Escribe mensaje"
-
-                                />
-
+                                <input type="text" ref="textInput" placeholder="Escribe mensaje"/>
                             </form>
                         </div>
                     </div> 
@@ -97,8 +98,11 @@ class App extends Component {
 
 export default withTracker(() => {
 
-  return {
+  Meteor.subscribe('users')
+  Meteor.subscribe('mensajes')
 
+  return {
+    usuarios:Users.find().fetch(),
     
 
   };
