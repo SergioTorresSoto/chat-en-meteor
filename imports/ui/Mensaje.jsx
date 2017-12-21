@@ -10,7 +10,10 @@ export default class Mensaje extends Component {
         <div>
         	{
         		Meteor.userId()==this.props.mensaje.idEmisor ?(
-        		 	<li className="text-right">{this.props.mensaje.texto}</li>
+        			
+
+        		 		<li className=" text-right ">{this.props.mensaje.texto}</li>
+        		 
         		 ):(
         		 	<li>{this.props.mensaje.texto}</li>
         		 )

@@ -451,3 +451,13 @@ header .hide-completed {
   background: #f5f3f3;
   
 }
+.btn{
+  width:100%;
+}
+.divinput {
+ 
+  font-size: 13px;
+  font-weight: 600;
+  padding: 18px 10px;
+  width: 100%;
+}

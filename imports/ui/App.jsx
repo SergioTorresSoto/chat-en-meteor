@@ -80,10 +80,11 @@ renderUsuarios() {
                             </div>
                          
                             <Conversaciones/>
-                        
-                            <form className="new-task" onSubmit={this.handleSubmit.bind(this)}  >
-                                <input type="text" ref="textInput" placeholder="Escribe mensaje"/>
-                            </form>
+                            <div className="divinput">
+                              <form className="new-task" onSubmit={this.handleSubmit.bind(this)}  >
+                                  <input className="input" type="text" ref="textInput" placeholder=" Escribe mensaje"/>
+                              </form>
+                            </div>
                         </div>
                     </div> 
                 </div>

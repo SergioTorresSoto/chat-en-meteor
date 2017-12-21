@@ -14,6 +14,7 @@ export default class Usuarios extends Component {
     // Find the text field via the React ref
 
     const myMessages = Mensajes.find({ texto: Meteor.userId() }).fetch();
+
   }
 
   render() {
@@ -23,16 +24,9 @@ export default class Usuarios extends Component {
         {Meteor.userId()!=this.props.usuario._id ?(
            <button type="submit"  key={this.props.usuario._id} className="btn btn-default" onClick={this.handleSubmit.bind(this, this.props.usuario._id)} >
 
-              <li className="left clearfix">
-                  <span className="chat-img pull-left">
-                     <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" className="img-circle"/>
-                  </span>
-                  <div className="chat-body clearfix">
-                      <div className="header_sec">
-                          <strong className="primary-font" ref="textInput">{this.props.usuario.emails[0].address}</strong> 
-                      </div>                              
-                  </div>
-              </li>
+             
+                          <span className="primary-font" ref="textInput">{this.props.usuario.emails[0].address}</span> 
+          
              
             </button>
         ):(
