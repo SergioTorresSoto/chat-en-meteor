@@ -6,7 +6,7 @@ import Mensaje from './Mensaje';
 
 class Conversacion extends Component {
 
-  renderTasks() {
+  renderMensajes() {
 
     return this.props.mensajes.map((mensaje) => (
 
@@ -21,8 +21,8 @@ class Conversacion extends Component {
 
     	  <div className="chat_area">
                 <ul className="list-unstyled">
-                	
-                    {this.renderTasks()}
+         
+                   {this.renderMensajes()}
                 </ul>
            </div>
     );
@@ -32,8 +32,17 @@ export default withTracker(() => {
 
   return {
 
-    mensajes: Mensajes.find({}).fetch(),
+    //mensajes: Mensajes.find({idEmisor: Meteor.userId(), idReceptor:Session.get('isUser')}).fetch(),
+
+
+    mensajes: Mensajes.find({
+    	$or:[
+                {idEmisor: Meteor.userId(), idReceptor:Session.get('isUser')},
+                {idEmisor: Session.get('isUser') , idReceptor:Meteor.userId()}
+            ]}).fetch(),	
 
   };
+
+  
 
 })(Conversacion);

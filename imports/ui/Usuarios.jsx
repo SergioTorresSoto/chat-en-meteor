@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Mensajes } from '../api/mensajes.js';
+
 export default class Usuarios extends Component {
 
   handleSubmit(idUsuarios) {
@@ -7,16 +9,19 @@ export default class Usuarios extends Component {
     Session.set('isUser', texto),
     sesion = Session.get('isUser')
    // console.log(sesion)
+
+    
+    // Find the text field via the React ref
+
+    const myMessages = Mensajes.find({ texto: Meteor.userId() }).fetch();
   }
 
   render() {
-    idusuario = Meteor.userId();
-    console.log(idusuario);
+    
     return (
       <div>
-        {idusuario!=this.props.usuario._id ?(
+        {Meteor.userId()!=this.props.usuario._id ?(
            <button type="submit"  key={this.props.usuario._id} className="btn btn-default" onClick={this.handleSubmit.bind(this, this.props.usuario._id)} >
-             
 
               <li className="left clearfix">
                   <span className="chat-img pull-left">

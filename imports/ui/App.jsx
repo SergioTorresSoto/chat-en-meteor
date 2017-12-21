@@ -44,6 +44,7 @@ renderUsuarios() {
   }
 }
 
+
   render() {
     console.log(Meteor.user());
       return (
@@ -77,9 +78,9 @@ renderUsuarios() {
                                       <AccountsUIWrapper />
                                 </div>
                             </div>
-
+                         
                             <Conversaciones/>
-
+                        
                             <form className="new-task" onSubmit={this.handleSubmit.bind(this)}  >
                                 <input type="text" ref="textInput" placeholder="Escribe mensaje"/>
                             </form>
@@ -103,8 +104,6 @@ export default withTracker(() => {
 
   return {
     usuarios:Users.find().fetch(),
-    
-
   };
 
 })(App);
